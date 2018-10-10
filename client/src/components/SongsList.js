@@ -7,13 +7,14 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 // components
 import SongItem from './SongItem'
-
+let songLibrary;
 class SongsList extends Component {
     constructor(props) {
         super(props) 
 
         this.state = {
-            selected: null
+            selected: null,
+            isLoaded: false
         }
     }
     handleClick = current => {
@@ -25,19 +26,24 @@ class SongsList extends Component {
         if(data.loading) {
             return <CircularProgress size={100} />
         } else {
-            console.log
-            return data.songs.map(song => {
-                return <div key={song.id} onClick={ () => this.handleClick(song) } id="song-item"><SongItem songObj={song}/></div>
-            })
+            if(data.songs){
+                if(this.state.isLoaded === false)
+                this.setState(prevState => { return {selected: prevState.selected, isLoaded: true}})
+                console.log(data.songs)
+                songLibrary = data.songs.map(song => {
+                    return <div key={song.id} onClick={ () => this.handleClick(song) } id="song-item"><SongItem songObj={song}/></div>
+                })
+            }
         }
     }
 
     render() {
+        this.displaySongs()
         return (
             <Fragment>
                 <h2>Song Library</h2>
                 <div id="song-list-container">
-                    {this.displaySongs()}
+                    {this.state.isLoaded && songLibrary}
                 </div>
             </Fragment>
         );

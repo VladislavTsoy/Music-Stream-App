@@ -38,7 +38,6 @@ class ArtistDetailItem extends Component {
         }
     }
     componentDidMount = () => {
-        // console.log(this.props)
         if(this.props.artistObj){
             const temp = this.props.artistObj.albums.map(album => {
                 return <Link key={album.id} to={`/albums/${album.id}`}><ArtistDetailAlbums albumObj={album}/></Link>
@@ -49,7 +48,6 @@ class ArtistDetailItem extends Component {
 
     render(){
         const { classes } = this.props;
-        // console.log(this.state)
         return (
             <div className={classes.artist}>
                 <div id="artist-detail-item-heading">

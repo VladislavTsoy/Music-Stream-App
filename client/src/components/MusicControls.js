@@ -57,6 +57,7 @@ class MusicControls extends Component {
     }
 
     playSong = () => {
+        console.log('play')
         if(this.props.audioFile){
             this.props.audioFile.play()
             this.setState({togglePlay: true})
@@ -64,6 +65,7 @@ class MusicControls extends Component {
     }
 
     pauseSong = () => {
+        console.log('pause')
         this.props.audioFile.pause()
         this.setState({togglePlay: false})
     }
@@ -89,7 +91,7 @@ class MusicControls extends Component {
                                 <IconButton style={this.styles.type} aria-label="Previous">
                                     <SkipPreviousIcon />
                                 </IconButton>
-                                <IconButton aria-label="Play/pause">
+                                <IconButton aria-label="Play/pause" onClick={this.state.togglePlay? this.pauseSong : this.playSong}>
                                     {this.state.togglePlay
                                         ? <PauseIcon style={this.styles.playIcon} onClick={() => this.pauseSong()} /> 
                                         : <PlayArrowIcon style={this.styles.playIcon} onClick={() =>this.playSong()}/>}

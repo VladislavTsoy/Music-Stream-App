@@ -6,16 +6,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom'
 // components 
 import ArtistItem from './ArtistItem'
-import ArtistDetail from './ArtistDetail'
 
 class ArtistsList extends Component {
-    // componentDidMount = () => {
-    //     console.log(this.props)
-    // }
-
-    // componentWillReceiveProps = nextProps => {
-    //     console.log(nextProps)
-    // }
 
     displayArtists = () => {
         let data = this.props.data

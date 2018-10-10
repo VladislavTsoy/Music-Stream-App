@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { graphql } from 'react-apollo'
 import { getAlbumQuery } from '../queries/queries'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // components
 import AlbumItem from './AlbumItem'
@@ -22,7 +23,7 @@ class AlbumDetail extends Component {
                 </Fragment>
             )
         } else {
-            return <div>no albums elected</div>
+            return <CircularProgress size={100} />
         }
     }
     render() {

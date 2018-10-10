@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo'
 import { getArtistQuery } from '../queries/queries'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // compopnents
 import ArtistDetailItem from './ArtistDetailItem'
@@ -14,18 +15,11 @@ class ArtistDetail extends Component {
         }
     }
 
-    // componentWillReceiveProps = nextProps => {
-    //     console.log(nextProps)
-    // }
-
     displayArtist = () => {
         let data = this.props.data
-        // console.log(data)
-        // console.log(data.artist)
         if(data.loading){
-            return <div>loading.</div>
+            return <CircularProgress size={100} />
         } else if(data.artist){
-            // console.log(data.artist)
             return <ArtistDetailItem artistObj={data.artist}/>
         }
     }
