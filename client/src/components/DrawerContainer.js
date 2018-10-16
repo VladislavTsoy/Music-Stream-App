@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 const DrawerContainer = () => {
     return (
         <div id="drawer" style={{width: '100%'}}>
-            <SearchBar />
+            {/* <SearchBar /> */}
             <Navbar />
         </div>
     );

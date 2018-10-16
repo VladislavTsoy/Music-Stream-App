@@ -86,13 +86,13 @@ class Navbar extends Component {
                     </ListItem>
                 </Link>
 
-                <Divider light={true}/>
+                {/* <Divider light={true}/>
                 
                 <Link to='/radio'>
                     <ListItem button>
                         <ListItemText primary="Radio" />
                     </ListItem>
-                </Link>
+                </Link> */}
             </List>
         </div>
     );
