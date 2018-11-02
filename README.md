@@ -5,11 +5,19 @@ Users can browse through my music library and stream songs.  Users have the capa
 ## Getting Started
 
 cd into the root folder and run the following commands in the terminal:
-* npm install
-* nodemon server.js
+```
+npm install
+```
+```
+nodemon server.js
+```
 open new terminal window and run
-* cd client
-* npm start
+```
+cd client
+```
+```
+npm start
+```
 
 ## Built With
 
