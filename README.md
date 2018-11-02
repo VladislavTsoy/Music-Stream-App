@@ -12,8 +12,6 @@ nodemon server.js
 open new terminal window and run
 ```
 cd client
-```
-```
 npm start
 ```
 
