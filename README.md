@@ -7,8 +7,6 @@ Users can browse through my music library and stream songs.  Users have the capa
 cd into the root folder and run the following commands in the terminal:
 ```
 npm install
-```
-```
 nodemon server.js
 ```
 open new terminal window and run
