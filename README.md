@@ -22,6 +22,7 @@ npm start
 * [ReactJS](https://reactjs.org/docs/getting-started.html) - The web framework used
 * [Redux](https://redux.js.org/) - Redux used for state management
 * [Apollo](https://www.apollographql.com/docs/react/) - Used to Fetch data with GraphQL
+* [Material-UI](https://material-ui.com/getting-started/installation/) - Used Material-UI CSS Framework
 
 ### Back-End
 * [NodeJS](https://nodejs.org/en/docs/) - NodeJS used for back-end scripting
