@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+// Required Modules
+import React from 'react';
 
 // components
-import MusicControls from './MusicControls'
+import MusicControls from './MusicControls';
 
-class ControllerContainer extends Component {
-    render() {
-        return (
-            <div id="music-controls">
-                <MusicControls />
-            </div>
-        );
-    }
-}
+const ControllerContainer = () => {
+    return (
+        <div id="music-controls">
+            <MusicControls />
+        </div>
+    );
+};
 
 export default ControllerContainer;

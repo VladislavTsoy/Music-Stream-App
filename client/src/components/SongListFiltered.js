@@ -1,15 +1,17 @@
+// Required Modules
 import React from 'react';
-import { connect } from 'react-redux'
-import { setCurrentSong } from '../redux'
+import { connect } from 'react-redux';
+import { setCurrentSong } from '../redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+
+// Required Components
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { fromPromise } from 'apollo-link';
 
 const CustomTableCell = withStyles(theme => ({
     head: {
@@ -58,18 +60,17 @@ let id = 0;
 function createData(title, album, genre, artwork, songObj) {
     id += 1;
     return { id, title, album, genre, artwork, songObj};
-}
+};
   
 const SongListFiltered = props => {
     const { classes } = props;
     const rows = props.songs.map(song => {
-        
         return createData(song.title, song.album? song.album.title : song.artist.name, song.genre, song.artwork, song)
-    })
+    });
 
     const handleClick = song => {
         props.setCurrentSong(song)
-    }
+    };
 
     return (
       <Paper className={classes.root}>
@@ -88,7 +89,7 @@ const SongListFiltered = props => {
             {rows.map(row => {
               return (
                 <TableRow className={classes.row} key={row.id} hover={true} onClick={() =>handleClick(row.songObj)}>
-                  <CustomTableCell><img className="album-avatar" src={row.artwork}/></CustomTableCell>
+                  <CustomTableCell><img className="album-avatar" src={row.artwork} alt={row.title}/></CustomTableCell>
                   <CustomTableCell className={classes.type}>{row.title}</CustomTableCell>
                   <CustomTableCell className={classes.type}>{row.album}</CustomTableCell>
                   <CustomTableCell className={classes.type}>{row.genre}</CustomTableCell>
@@ -105,4 +106,4 @@ SongListFiltered.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(null, {setCurrentSong})(withStyles(styles)(SongListFiltered))
+export default connect(null, {setCurrentSong})(withStyles(styles)(SongListFiltered));

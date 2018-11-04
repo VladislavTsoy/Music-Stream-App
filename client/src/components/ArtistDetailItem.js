@@ -1,11 +1,11 @@
+// Required Modules
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+// Required Components
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
-
-
-// components
 import SongListFiltered from './SongListFiltered'
 import ArtistDetailAlbums from './ArtistDetailAlbums'
 
@@ -28,23 +28,22 @@ const styles = {
     }
 };
 
-
-
 class ArtistDetailItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             displayAlbums: []
-        }
-    }
+        };
+    };
+
     componentDidMount = () => {
         if(this.props.artistObj){
             const temp = this.props.artistObj.albums.map(album => {
                 return <Link key={album.id} to={`/albums/${album.id}`}><ArtistDetailAlbums albumObj={album}/></Link>
-            })
-            this.setState({displayAlbums: [...temp]})
-        }
-    }
+            });
+            this.setState({displayAlbums: [...temp]});
+        };
+    };
 
     render(){
         const { classes } = this.props;
@@ -73,4 +72,4 @@ ArtistDetailItem.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ArtistDetailItem)
+export default withStyles(styles)(ArtistDetailItem);

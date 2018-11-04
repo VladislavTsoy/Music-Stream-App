@@ -1,38 +1,36 @@
-import React, { Component, Fragment} from 'react';
-import { graphql } from 'react-apollo'
-import { getGenreQuery } from '../queries/queries'
+// Required Modules
+import React, { Fragment } from 'react';
+import { graphql } from 'react-apollo';
+import { getGenreQuery } from '../queries/queries';
 
-// components
-import SongListFiltered from './SongListFiltered'
+// Required Components
+import SongListFiltered from './SongListFiltered';
 
-class GenreDetail extends Component {
-    displayMusic = () => {
-        let { data } = this.props
+const GenreDetail = props => {
+    const displayMusic = () => {
+        let { data } = props;
         if(data) {
-            console.log(data.genre)
             if(data.loading) {
-                return <div>...loading</div>
+                return <div>...loading</div>;
             } else {
                 return (
                     <Fragment>  
                         <SongListFiltered songs={data.genre} />
                     </Fragment>
-                )
+                );
             }
-        }
-    }
+        };
+    };
 
-    render() {
-        return (
-            <Fragment>
-                <h2 style={{marginLeft: 30}}>{this.props.match.params.id}</h2>
-                <div id="album-detail-container">
-                    {this.displayMusic()}
-                </div>
-            </Fragment>
-        );
-    }
-}
+    return (
+        <Fragment>
+            <h2 style={{marginLeft: 30}}>{props.match.params.id}</h2>
+            <div id="album-detail-container">
+                {displayMusic()}
+            </div>
+        </Fragment>
+    );  
+};
 
 export default graphql(getGenreQuery, {
     options: props => {
@@ -41,6 +39,6 @@ export default graphql(getGenreQuery, {
                 genre: props.match.params.id
             },
             fetchPolicy: 'no-cache'
-        }
+        };
     }
 })(GenreDetail);

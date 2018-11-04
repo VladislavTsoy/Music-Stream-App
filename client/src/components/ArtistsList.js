@@ -1,16 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import { graphql } from 'react-apollo'
-import { getArtistsQuery } from '../queries/queries'
-import { connect } from 'react-redux'
+// Required Modules
+import React, { Fragment } from 'react';
+import { graphql } from 'react-apollo';
+import { getArtistsQuery } from '../queries/queries';
+import { connect } from 'react-redux';
+
+// Required Components 
+import ArtistItem from './ArtistItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Link } from 'react-router-dom'
-// components 
-import ArtistItem from './ArtistItem'
+import { Link } from 'react-router-dom';
 
-class ArtistsList extends Component {
-
-    displayArtists = () => {
-        let data = this.props.data
+const ArtistsList = props => {
+    const displayArtists = () => {
+        let data = props.data;
         if(data.loading) {
             return <CircularProgress size={100} />
         } else {
@@ -20,19 +21,18 @@ class ArtistsList extends Component {
                                 <ArtistItem artistObj={artist}/>
                             </div>
                         </Link>
-            })
+            });
         }
-    }
-    render() {
-        return (
-            <Fragment>
-                <h2>Artists</h2>
-                <div id="song-list-container">
-                    {this.displayArtists()}
-                </div>
-            </Fragment>
-        );
-    }
-}
+    };
 
-export default (graphql(getArtistsQuery)(connect(state=> state, {})(ArtistsList)))
+    return (
+        <Fragment>
+            <h2>Artists</h2>
+            <div id="song-list-container">
+                {displayArtists()}
+            </div>
+        </Fragment>
+    );
+};
+
+export default (graphql(getArtistsQuery)(connect(state=> state, {})(ArtistsList)));

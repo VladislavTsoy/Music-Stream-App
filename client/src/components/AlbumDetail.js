@@ -1,41 +1,36 @@
-import React, { Component, Fragment } from 'react';
-import { graphql } from 'react-apollo'
-import { getAlbumQuery } from '../queries/queries'
+// Required Modules
+import React, { Fragment } from 'react';
+import { graphql } from 'react-apollo';
+import { getAlbumQuery } from '../queries/queries';
+
+// Required Components
+import AlbumItem from './AlbumItem';
+import SongListFiltered from './SongListFiltered';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-// components
-import AlbumItem from './AlbumItem'
-import SongListFiltered from './SongListFiltered'
-
-
-class AlbumDetail extends Component {
-    constructor(props){
-        super(props)
-    }
-
-    displayAlbum = () => {
-        const { album } = this.props.data
+const AlbumDetail = props => {
+    const displayAlbum = () => {
+        const { album } = props.data;
         if(album) {
             return (
                 <Fragment>
                     <AlbumItem songs={album} />
                     <SongListFiltered songs={album.tracks} />
                 </Fragment>
-            )
+            );
         } else {
             return <CircularProgress size={100} />
         }
-    }
-    render() {
-        return (
-            <Fragment>
-                <div id="album-detail-container">
-                    {this.displayAlbum()}
-                </div>
-            </Fragment>
-        );
-    }
-}
+    };
+
+    return (
+        <Fragment>
+            <div id="album-detail-container">
+                {displayAlbum()}
+            </div>
+        </Fragment>
+    );
+};
 
 export default graphql(getAlbumQuery, {
     options: props => {
@@ -44,6 +39,6 @@ export default graphql(getAlbumQuery, {
                 id: props.match.params.id
             },
             fetchPolicy: 'no-cache'
-        }
+        };
     }
 })(AlbumDetail);

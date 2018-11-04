@@ -1,4 +1,8 @@
-import React, {Component} from 'react';
+// Required Modules
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux'
+
+// Required Components
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -8,15 +12,15 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-import { connect } from 'react-redux'
 
-class MusicControls extends Component {
+class MusicControls extends PureComponent {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             togglePlay: props.audioFile? true : false
-        }
-    }
+        };
+    };
+
     styles = {
         card: {
           display: 'flex',
@@ -54,7 +58,7 @@ class MusicControls extends Component {
         if(!prevProps.audioFile){
             this.setState({togglePlay: true})
         }
-    }
+    };
 
     playSong = () => {
         console.log('play')
@@ -62,13 +66,13 @@ class MusicControls extends Component {
             this.props.audioFile.play()
             this.setState({togglePlay: true})
         }
-    }
+    };
 
     pauseSong = () => {
         console.log('pause')
         this.props.audioFile.pause()
         this.setState({togglePlay: false})
-    }
+    };
     
     render(){
         return (

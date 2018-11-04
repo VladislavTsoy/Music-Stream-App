@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+// Required Modules
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+
+// Required Components
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -17,20 +20,19 @@ const styles = theme => ({
     }
 });
 
-class Navbar extends Component {
+class Navbar extends PureComponent {
     constructor(){
-        super()
+        super();
         this.state = {
             menuToggle: false
-        }
-    }
+        };
+    };
 
     handleMenu = () => {
-        console.log(this.state.menuToggle)
         this.setState(prevState => {
             return  { menuToggle: !prevState.menuToggle }
-        })
-    }
+        });
+    };
 
     render(){
         const { classes } = this.props;
@@ -85,17 +87,9 @@ class Navbar extends Component {
                         <ListItemText primary="Genre" />
                     </ListItem>
                 </Link>
-
-                {/* <Divider light={true}/>
-                
-                <Link to='/radio'>
-                    <ListItem button>
-                        <ListItemText primary="Radio" />
-                    </ListItem>
-                </Link> */}
             </List>
         </div>
-    );
+        );
     }
 };
 

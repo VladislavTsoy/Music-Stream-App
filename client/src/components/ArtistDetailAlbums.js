@@ -1,4 +1,7 @@
+// Required Modules
 import React from 'react';
+
+// Required Components
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import PropTypes from 'prop-types';
@@ -51,4 +54,4 @@ ArtistDetailAlbums.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ArtistDetailAlbums)
+export default withStyles(styles)(ArtistDetailAlbums);

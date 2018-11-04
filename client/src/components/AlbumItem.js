@@ -1,5 +1,8 @@
+// Required Modules
 import React from 'react';
 import PropTypes from 'prop-types';
+
+// Required Components
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';

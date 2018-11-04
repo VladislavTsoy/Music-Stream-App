@@ -1,25 +1,27 @@
-import React, { Component, Fragment } from 'react';
+// Required Modules
+import React, { PureComponent, Fragment } from 'react';
 import { graphql } from 'react-apollo'
 import { getSongsQuery } from '../queries/queries'
 import { connect } from 'react-redux'
 import { setCurrentSong } from '../redux'
+
+// Required Components
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-// components
 import SongItem from './SongItem'
-let songLibrary;
-class SongsList extends Component {
-    constructor(props) {
-        super(props) 
 
+let songLibrary;
+class SongsList extends PureComponent {
+    constructor(props) {
+        super(props) ;
         this.state = {
             selected: null,
             isLoaded: false
-        }
-    }
+        };
+    };
+
     handleClick = current => {
         this.props.setCurrentSong(current)
-    }
+    };
 
     displaySongs = () => {
         let data = this.props.data
@@ -32,13 +34,13 @@ class SongsList extends Component {
                 console.log(data.songs)
                 songLibrary = data.songs.map(song => {
                     return <div key={song.id} onClick={ () => this.handleClick(song) } id="song-item"><SongItem songObj={song}/></div>
-                })
-            }
+                });
+            };
         }
-    }
+    };
 
     render() {
-        this.displaySongs()
+        this.displaySongs();
         return (
             <Fragment>
                 <h2>Song Library</h2>
@@ -47,7 +49,7 @@ class SongsList extends Component {
                 </div>
             </Fragment>
         );
-    }
-}
+    };
+};
 
-export default (graphql(getSongsQuery)  (  connect(state => state, { setCurrentSong } )(SongsList)));
+export default (graphql(getSongsQuery)(connect(state => state, { setCurrentSong } )(SongsList)));
