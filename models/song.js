@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+// Required Modules
+const mongoose = require('mongoose');
 
 const songSchema = new mongoose.Schema({
     title: String,
@@ -8,6 +9,6 @@ const songSchema = new mongoose.Schema({
     albumId: String,
     source: String,
     duration: Number
-})
+});
 
-module.exports = mongoose.model("Song", songSchema)
+module.exports = mongoose.model("Song", songSchema);

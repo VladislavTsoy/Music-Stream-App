@@ -1,4 +1,5 @@
-import { gql } from 'apollo-boost'
+// Required Modules
+import { gql } from 'apollo-boost';
 
 const getSongsQuery = gql`
     {
@@ -19,8 +20,7 @@ const getSongsQuery = gql`
             duration
         }
     }
-`
-
+`;
 
 const getArtistsQuery = gql`
     {
@@ -48,7 +48,7 @@ const getArtistsQuery = gql`
             }
         }
     }
-`
+`;
 
 const getArtistQuery = gql`
     query($id: ID){
@@ -84,9 +84,7 @@ const getArtistQuery = gql`
         }
     }
 }
-`
-
-
+`;
 
 const getAlbumsQuery = gql`
     {
@@ -100,7 +98,7 @@ const getAlbumsQuery = gql`
             artwork
         }
     }
-`
+`;
 
 const getAlbumQuery = gql`
 query($id: ID){
@@ -124,7 +122,7 @@ query($id: ID){
         }
     }
 }
-`
+`;
 
 const getGenreQuery = gql`
 query($genre: String){
@@ -144,8 +142,8 @@ query($genre: String){
         }
     }
 }
-`
+`;
 
-export { getSongsQuery, getArtistsQuery, getAlbumsQuery, getArtistQuery, getAlbumQuery, getGenreQuery }
+export { getSongsQuery, getArtistsQuery, getAlbumsQuery, getArtistQuery, getAlbumQuery, getGenreQuery };
 
 

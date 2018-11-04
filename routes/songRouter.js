@@ -1,6 +1,7 @@
-const express = require('express')
-const songRouter = express.Router()
-const Song = require('../models/song')
+// Required Modules
+const express = require('express');
+const songRouter = express.Router();
+const Song = require('../models/song');
 
 songRouter.route('/songs')
     .get((req, res) => {
@@ -15,7 +16,7 @@ songRouter.route('/songs')
             if(err) return res.status(500).send(err)
             return res.status(201).send(newSavedSong)
         })
-    })
+    });
 
 songRouter.route('/songs/:id')
     .get((req, res) => {
@@ -46,6 +47,6 @@ songRouter.route('/songs/:id')
                 return res.status(202).send(deletedSong)
             }
         )
-    })
+    });
 
-module.exports = songRouter
+module.exports = songRouter;

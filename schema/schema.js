@@ -1,3 +1,4 @@
+// Required Modules
 const graphql = require('graphql')
 const Song = require('../models/song')
 const Artist = require('../models/artist')
@@ -11,7 +12,7 @@ const {
     GraphQLID, 
     GraphQLList, 
     GraphQLNonNull
-} = graphql
+} = graphql;
 
 // GraphQL Song Object
 const SongType = new GraphQLObjectType({
@@ -26,17 +27,17 @@ const SongType = new GraphQLObjectType({
         artist: {
             type: ArtistType,
             resolve(parent, args) {
-                return Artist.findById(parent.artistId)
+                return Artist.findById(parent.artistId);
             }
         },
         album: {
             type: AlbumType, 
             resolve(parent, args) {
-                return Album.findById(parent.albumId)
+                return Album.findById(parent.albumId);
             }
         }
     })
-})
+});
 
 //GraphQL Artist Object
 const ArtistType = new GraphQLObjectType({
@@ -48,17 +49,17 @@ const ArtistType = new GraphQLObjectType({
         songs: {
             type: new GraphQLList(SongType),
             resolve(parent, args) {
-                return Song.find({artistId: parent.id})
+                return Song.find({artistId: parent.id});
             }
         },
         albums: {
             type: new GraphQLList(AlbumType),
             resolve(parent, args) {
-                return Album.find({artistId: parent.id})
+                return Album.find({artistId: parent.id});
             }
         }
     })
-})
+});
 
 const AlbumType = new GraphQLObjectType({
     name: "Album",
@@ -69,17 +70,17 @@ const AlbumType = new GraphQLObjectType({
         artist: {
             type: ArtistType,
             resolve(parent, args){
-                return Artist.findById(parent.artistId)
+                return Artist.findById(parent.artistId);
             }
         },
         tracks: {
             type: new GraphQLList(SongType),
             resolve(parent, args) {
-                return Song.find({albumId: parent.id})
+                return Song.find({albumId: parent.id});
             }
         }
     })
-})
+});
 
 const RootQuery = new GraphQLObjectType({
     name: "RootQueryType",
@@ -88,50 +89,50 @@ const RootQuery = new GraphQLObjectType({
             type: SongType,
             args: {id: {type: GraphQLID}},
             resolve(parent, args) {
-                return Song.findById(args.id)
+                return Song.findById(args.id);
             }
         },
         album: {
             type: AlbumType,
             args: {id: {type: GraphQLID}},
             resolve(parent, args){
-                return Album.findById(args.id)
+                return Album.findById(args.id);
             }
         },
         artist: {
             type: ArtistType,
             args: {id: {type: GraphQLID}},
             resolve(parent, args) {
-                return Artist.findById(args.id)
+                return Artist.findById(args.id);
             }
         },
         songs: {
             type: new GraphQLList(SongType),
             resolve(parent, args) {
-                return Song.find()
+                return Song.find();
             }
         },
         albums: {
             type: new GraphQLList(AlbumType),
             resolve(parent, args) {
-                return Album.find()
+                return Album.find();
             }
         },
         artists: {
             type: new GraphQLList(ArtistType),
             resolve(parent, args){
-                return Artist.find()
+                return Artist.find();
             }
         },
         genre: {
             type: new GraphQLList(SongType),
             args: {genre: {type: GraphQLString}},
             resolve(parent, args){
-                return Song.where({genre: args.genre})
+                return Song.where({genre: args.genre});
             }
         }
     }
-})
+});
 
 const Mutation = new GraphQLObjectType({
     name: "Mutation",
@@ -146,8 +147,8 @@ const Mutation = new GraphQLObjectType({
                 let artist = new Artist({
                     name: args.name,
                     artistImg: args.artistImg
-                })
-                return artist.save()
+                });
+                return artist.save();
             }
         },
         addAlbum: {
@@ -162,8 +163,8 @@ const Mutation = new GraphQLObjectType({
                     title: args.title,
                     artistId: args.artistId,
                     artwork: args.artwork
-                })
-                return album.save()
+                });
+                return album.save();
             }
         },
         addSong: {
@@ -186,8 +187,8 @@ const Mutation = new GraphQLObjectType({
                     albumId: args.albumId,
                     source: args.source,
                     duration: args.duration
-                })
-                return song.save()
+                });
+                return song.save();
             }
         },
         updateArtist: {
@@ -207,7 +208,7 @@ const Mutation = new GraphQLObjectType({
                         }
                     },
                     { new: true } 
-                )
+                );
             }
         },
         updateAlbum: {
@@ -229,7 +230,7 @@ const Mutation = new GraphQLObjectType({
                         }
                     },
                     { new: true }
-                )
+                );
             }
         },
         updateSong: {
@@ -259,34 +260,34 @@ const Mutation = new GraphQLObjectType({
                         }
                     },
                     { new: true }
-                )
+                );
             }
         },
         deleteArtist: {
             type: ArtistType,
             args: {id: {type: new GraphQLNonNull(GraphQLID)}},
             resolve(parent, args) {
-                return Artist.findByIdAndDelete(args.id)
+                return Artist.findByIdAndDelete(args.id);
             }
         },
         deleteAlbum: {
             type: AlbumType,
             args: {id: {type: new GraphQLNonNull(GraphQLID)}},
             resolve(parent, args) {
-                return Album.findByIdAndRemove(args.id)
+                return Album.findByIdAndRemove(args.id);
             }
         },
         deleteSong: {
             type: SongType,
             args: {id: {type: new GraphQLNonNull(GraphQLID)}},
             resolve(parent, args) {
-                return Song.findByIdAndRemove(args.id)
+                return Song.findByIdAndRemove(args.id);
             }
         }
     }
-})
+});
 
 module.exports = new GraphQLSchema({
     query: RootQuery,
     mutation: Mutation
-})
+});

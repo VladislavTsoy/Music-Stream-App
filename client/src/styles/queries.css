@@ -36,16 +36,12 @@
         display: block;
         background-color: inherit;
         color: inherit;
-        /* margin-right: 50px; */
         position: absolute;
         right: 0px;
     }
     form {
         width: 200px;
         height: 50px;
-        /* display: flex;
-        align-items: center;
-        justify-content: center; */
     }
 
     .search-bar {

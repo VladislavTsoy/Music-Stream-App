@@ -1,3 +1,4 @@
+// required Modules
 const express = require('express')
 const artistRouter = express.Router()
 const Artist = require('../models/artist')
@@ -15,7 +16,7 @@ artistRouter.route('/artists')
             if(err) return res.status(500).send(err)
             return res.status(201).send(newSavedArtist)
         })
-    })
+    });
 
 artistRouter.route('/artists/:id')
     .get((req, res) => {
@@ -46,6 +47,6 @@ artistRouter.route('/artists/:id')
                 return res.status(202).send(deleteArtist)
             }
         )
-    })
+    });
 
-module.exports = artistRouter
+module.exports = artistRouter;
